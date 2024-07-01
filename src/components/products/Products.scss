@@ -1,6 +1,7 @@
 .products{
     .product__btn{
-        display: none ;
+        display: flex ;
+        opacity: 0;
     }
     .product__categorys{
         display: flex;
@@ -97,6 +98,7 @@
                     font-size: 20px;
                     font-weight: 500;
                     line-height: 22px;
+                    color: #454545;
                 }
                 .price{
                     margin-top: 24px;
@@ -199,8 +201,8 @@
         }
     }
     .product__btn{
-        display: flex !important;
         align-items: center;
+        opacity: 1 !important;
         margin: 50px 0;
         button{
                 display: flex;
