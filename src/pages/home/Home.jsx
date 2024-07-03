@@ -6,14 +6,20 @@ import Products from '../../components/products/Products'
 import Brends from '../../components/brends/Brends'
 import Blog from '../../components/blog/Blog'
 import Text from '../../components/text/Text'
+import { useGetProductsQuery } from '../../context/api/productApi'
 
 const Home = () => {
+
+
+  const { data } = useGetProductsQuery()
+
+
   return (
     <>
       <Banner/>
       <Katalog/>
       <NORNLIGHT/>
-      <Products/>
+      <Products data={data}/>
       <Brends/>
       <Blog/>
       <Text/>

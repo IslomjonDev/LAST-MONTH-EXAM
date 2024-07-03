@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useGetProductByIdQuery } from '../../context/api/productApi'
 import './SingleRout.scss'
@@ -14,6 +14,11 @@ import { CiHeart } from "react-icons/ci";
 
 
 const SingleRout = () => {
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+
+    } , [])
 
     const {id} = useParams()
 

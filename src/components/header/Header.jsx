@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './Header.scss'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import logo from '../../assets/logo.png'
 import { RxHamburgerMenu } from "react-icons/rx";
 import { CiSearch , CiHeart , CiShoppingCart} from "react-icons/ci";
@@ -20,12 +20,12 @@ const Header = () => {
                   <div className="top__list">
                     <ul className={burger ? "show" : ""} >
                       <div className='links'>
-                        <Link onClick={() => setBurger(p => !p) }   to="/">О компании</Link>
-                        <Link onClick={() => setBurger(p => !p) }  to="/about">Доставка и оплата</Link>
-                        <Link onClick={() => setBurger(p => !p) }  to="/">Возврат</Link>
-                        <Link onClick={() => setBurger(p => !p) }  to="/">Гарантии</Link>
-                        <Link onClick={() => setBurger(p => !p) }  to="/contact">Контакты</Link>
-                        <Link onClick={() => setBurger(p => !p) }  to="/">Блог</Link>
+                        <NavLink onClick={() => setBurger(p => !p) }   to="/about">О компании</NavLink>
+                        <NavLink onClick={() => setBurger(p => !p) }  to="/shipping-payment">Доставка и оплата</NavLink>
+                        <NavLink onClick={() => setBurger(p => !p) }  to="/return">Возврат</NavLink>
+                        <NavLink onClick={() => setBurger(p => !p) }  to="/garant">Гарантии</NavLink>
+                        <NavLink onClick={() => setBurger(p => !p) }  to="/contact">Контакты</NavLink>
+                        <NavLink onClick={() => setBurger(p => !p) }  to="/blog">Блог</NavLink>
                       </div>
                       <div  className="media-btn">
                         <button><RxHamburgerMenu />
@@ -33,7 +33,7 @@ const Header = () => {
                       </div>
                       <div className="top__tel">
                           <p>8 (800) 890-46-56</p>
-                          <Link onClick={() => setBurger(p => !p) } >Заказать звонок</Link>
+                          <NavLink onClick={() => setBurger(p => !p) } >Заказать звонок</NavLink>
                       </div>
                     </ul>
                   </div>
@@ -45,8 +45,10 @@ const Header = () => {
                      <RxHamburgerMenu/>
                     </button>
                   </div>
-                  <img src={logo} alt="" />
-                  <h2>NORNLIGHT</h2>
+                  <NavLink  to={'/'} onClick={() => setBurger()} >
+                      <img src={logo} alt="" />
+                      <h2>NORNLIGHT</h2>
+                  </NavLink>
                 </div>
                 <div className="nav__inp">
                    <button><RxHamburgerMenu />
@@ -58,22 +60,22 @@ const Header = () => {
                 </div>
                 <div className="nav__icons">
                    <span>
-                       <Link to={'/'}>
+                       <NavLink to={'/wishlist'}>
                         <CiHeart />
                           <p>Избранное</p>
-                        </Link>
+                        </NavLink>
                    </span>
                    <span>
-                      <Link to={'/'}>
+                      <NavLink to={'/'}>
                         <TbAntennaBars5 />
                         <p>Сравнение</p>
-                      </Link>
+                      </NavLink>
                    </span>
                    <span>
-                      <Link to={'/'}>
+                      <NavLink to={'/'}>
                         <CiShoppingCart />  
                         <p>Корзина</p>
-                      </Link>
+                      </NavLink>
                    </span>
                 </div>
               </div>

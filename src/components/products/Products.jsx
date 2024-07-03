@@ -2,28 +2,38 @@ import React, { useEffect, useState } from 'react'
 import { useGetCategorysQuery, useGetProductByIdQuery, useGetProductsQuery } from '../../context/api/productApi'
 import './Products.scss'
 import { FaArrowRightLong } from "react-icons/fa6";
-import { IoCartOutline , IoHeartOutline } from "react-icons/io5";
+import { IoCartOutline , IoHeartOutline  , IoHeart} from "react-icons/io5";
 import { Link, useSearchParams } from 'react-router-dom';
 import Modul from '../modul/Modul';
+import { toggleHeart } from '../../context/slices/WishliSlice';
+import { useDispatch, useSelector } from'react-redux';
+import { useNavigate } from 'react-router-dom';
 
-const Products = ({ sliceCount = 8 }) => {
+
+ const Products = ({ data , sliceCount = 8 }) => {
+  const navigate = useNavigate()
+
+  const dispatch = useDispatch()
+
+  const wishlist = useSelector(v => v.wishlist.value)
+
   const [detail, setDetail] = useState(null)
-  const { data } = useGetProductsQuery()
   const { data : categorys } = useGetCategorysQuery()
   const [searchParams, setSearchParams] = useSearchParams()
+  const [model, setModel] = useState(null)
 
   let id = searchParams.get('detail')
   const { data: databyId } = useGetProductByIdQuery(id)
 
   useEffect(() => {
+  
     if (id) {
       setDetail(databyId);
     }
   }, [searchParams, databyId])
 
   const closeDetail = () => {
-    setDetail(null)
-    setSearchParams({})
+    setModel(null)
   }
 
   let products__category = categorys?.map(category => (
@@ -33,11 +43,17 @@ const Products = ({ sliceCount = 8 }) => {
   let products = data?.slice(0, sliceCount).map(product => (
     <div className="products__item" key={product.id}>
       <div className="imgp">
-        <div className='imgp2' onClick={() => setSearchParams({ detail: product?.id })}>
-          <img src={product?.image} alt={product?.image} />
+        <div className='imgp2' onClick={() => setModel(product)}>
+          <img onlci src={product?.image} alt={product?.image} />
         </div>
-        <button>
-          <IoHeartOutline />
+        <button onClick={() => dispatch(toggleHeart(product))}>
+          {
+            wishlist.some(heart => heart.id === product.id) ? 
+            <IoHeart style={{color: "red"}} />
+            : 
+            <IoHeartOutline />
+
+          }
         </button>
       </div>
       <div className="pro__prag">
@@ -80,10 +96,11 @@ const Products = ({ sliceCount = 8 }) => {
           </div>
         </div>
         {
-          detail ? 
+          model ? 
           <Modul close={closeDetail}>
               <div className='detail'>
-                <img src={detail?.image} alt="" />
+                <img src={model?.image  } alt="" />
+                <button onClick={() => navigate(`/products/${model.id}`)}>see-More</button>
               </div>
           </Modul>
           :
