@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './Header.scss'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import logo from '../../assets/logo.png'
 import { RxHamburgerMenu } from "react-icons/rx";
 import { CiSearch , CiHeart , CiShoppingCart} from "react-icons/ci";
@@ -51,8 +51,10 @@ const Header = () => {
                   </NavLink>
                 </div>
                 <div className="nav__inp">
-                   <button><RxHamburgerMenu />
-                   Каталог</button>
+                  <Link to={'/catalog'}>
+                    <button><RxHamburgerMenu />
+                    Каталог</button>
+                  </Link>
                    <div className="inp">
                       <input type="text" placeholder="Поиск по товарам" />
                       <CiSearch />
@@ -72,7 +74,7 @@ const Header = () => {
                       </NavLink>
                    </span>
                    <span>
-                      <NavLink to={'/'}>
+                      <NavLink to={'/cart'}>
                         <CiShoppingCart />  
                         <p>Корзина</p>
                       </NavLink>

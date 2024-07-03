@@ -11,8 +11,10 @@ import ShippingAndPayment from './pages/shippingAndPayment/ShippingAndPayment'
 import Return from './pages/return/Return'
 import Garant from './pages/garant/Garant'
 import Contact from './pages/contact/Contact'
-import Blog from './pages/blogpage/BlogPage'
 import BlogPage from './pages/blogpage/BlogPage'
+import KatalogPage from './pages/katalogPage/KatalogPage'
+import NotFound from './pages/not-found/NotFound'
+import Cart from './pages/cart/Cart'
 function App() {
 
   return (
@@ -29,6 +31,10 @@ function App() {
          <Route path='/garant' element={<Garant/>}/>
          <Route path='/contact' element={<Contact/>}/>
          <Route path='/blog' element={<BlogPage/>}/>
+         <Route path='/catalog' element={<KatalogPage/>}/>
+         <Route path='/cart' element={<Cart/>}/>
+         <Route path='*' element={<NotFound/>}/>
+
       </Routes>
       <Footer/>
     </>
