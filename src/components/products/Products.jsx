@@ -6,31 +6,21 @@ import { IoCartOutline , IoHeartOutline  , IoHeart} from "react-icons/io5";
 import { Link, useSearchParams } from 'react-router-dom';
 import Modul from '../modul/Modul';
 import { toggleHeart } from '../../context/slices/WishliSlice';
+import {addToCart} from '../../context/slices/CartSlice'
 import { useDispatch, useSelector } from'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 
  const Products = ({ data , sliceCount = 8 }) => {
   const navigate = useNavigate()
-
   const dispatch = useDispatch()
 
   const wishlist = useSelector(v => v.wishlist.value)
 
-  const [detail, setDetail] = useState(null)
+
   const { data : categorys } = useGetCategorysQuery()
-  const [searchParams, setSearchParams] = useSearchParams()
   const [model, setModel] = useState(null)
 
-  let id = searchParams.get('detail')
-  const { data: databyId } = useGetProductByIdQuery(id)
-
-  useEffect(() => {
-  
-    if (id) {
-      setDetail(databyId);
-    }
-  }, [searchParams, databyId])
 
   const closeDetail = () => {
     setModel(null)
@@ -65,7 +55,7 @@ import { useNavigate } from 'react-router-dom';
             <p>{product.oldPrice}</p>
             <h3>{product.price}</h3>
           </span>
-          <button><IoCartOutline />
+          <button onClick={() => dispatch(addToCart(product))} ><IoCartOutline />
           </button>
         </div>
       </div>

@@ -27,10 +27,12 @@ const Header = () => {
                         <NavLink onClick={() => setBurger(p => !p) }  to="/contact">Контакты</NavLink>
                         <NavLink onClick={() => setBurger(p => !p) }  to="/blog">Блог</NavLink>
                       </div>
-                      <div  className="media-btn">
-                        <button><RxHamburgerMenu />
-                        Каталог</button>
-                      </div>
+                      <Link onClick={() => setBurger(p => !p) }  to={'/catalog'}>
+                        <div  className="media-btn">
+                          <button><RxHamburgerMenu />
+                          Каталог</button>
+                        </div>
+                      </Link>
                       <div className="top__tel">
                           <p>8 (800) 890-46-56</p>
                           <NavLink onClick={() => setBurger(p => !p) } >Заказать звонок</NavLink>
