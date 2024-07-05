@@ -5,12 +5,14 @@
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 15;
 }
 .modul{
-    max-width: 600px;
+    max-width: 800px;
     background-color: #FFF;
     position: fixed;
     top: 50%;
+    z-index: 16;
     left: 50%;
     transform: translate(-50% , -80%) scale(.7);
     border-radius: 50px;

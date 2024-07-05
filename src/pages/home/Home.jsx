@@ -11,7 +11,7 @@ import { useGetProductsQuery } from '../../context/api/productApi'
 const Home = () => {
 
 
-  const { data } = useGetProductsQuery()
+  const { data , isLoading} = useGetProductsQuery()
 
 
   return (
@@ -19,7 +19,7 @@ const Home = () => {
       <Banner/>
       <Katalog/>
       <NORNLIGHT/>
-      <Products data={data}/>
+      <Products isLoading={isLoading} data={data}/>
       <Brends/>
       <Blog/>
       <Text/>

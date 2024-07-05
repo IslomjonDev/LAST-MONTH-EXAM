@@ -4,8 +4,15 @@ import'./Footer.scss'
 
 import logo from '../../assets/logo.png'
 import footer from '../../assets/footer.png'
+import { useLocation } from 'react-router-dom'
 
 const Footer = () => {
+
+  let {pathname} = useLocation()
+
+  if(pathname.includes('login') || pathname.includes('admin')){
+      return <></>
+  }
   return (
     <>
       <footer>

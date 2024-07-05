@@ -3,7 +3,8 @@ import { useGetCategorysQuery, useGetProductByIdQuery, useGetProductsQuery } fro
 import './Products.scss'
 import { FaArrowRightLong } from "react-icons/fa6";
 import { IoCartOutline , IoHeartOutline  , IoHeart} from "react-icons/io5";
-import { Link, useSearchParams } from 'react-router-dom';
+import { FaCheck } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 import Modul from '../modul/Modul';
 import { toggleHeart } from '../../context/slices/WishliSlice';
 import {addToCart} from '../../context/slices/CartSlice'
@@ -11,26 +12,35 @@ import { useDispatch, useSelector } from'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 
- const Products = ({ data , sliceCount = 8 }) => {
+ const Products = ({ isLoading ,  data , sliceCount = 8 }) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
   const wishlist = useSelector(v => v.wishlist.value)
+  const cart = useSelector(v => v.cart.value)
 
 
   const { data : categorys } = useGetCategorysQuery()
   const [model, setModel] = useState(null)
-
+  const [value , setValue] = useState("all")
 
   const closeDetail = () => {
     setModel(null)
   }
 
   let products__category = categorys?.map(category => (
-    <button className='category__btn' key={category.id}>{category.category}</button>
+    <>
+      <button onClick={() => setValue(category?.category)} className='category__btn' key={category.id}>{category.category}</button>
+    </>
   ))
 
-  let products = data?.slice(0, sliceCount).map(product => (
+
+  const categoryFilter = value === "all" ? data : data.filter(el => el?.category === value)
+
+  let products = categoryFilter?.slice(0, sliceCount).map(product => (
+
+
+
     <div className="products__item" key={product.id}>
       <div className="imgp">
         <div className='imgp2' onClick={() => setModel(product)}>
@@ -55,8 +65,13 @@ import { useNavigate } from 'react-router-dom';
             <p>{product.oldPrice}</p>
             <h3>{product.price}</h3>
           </span>
-          <button onClick={() => dispatch(addToCart(product))} ><IoCartOutline />
-          </button>
+          {
+            cart.some(cart => cart.id === product.id) ? 
+            <button className='cart__btn__check'><FaCheck /></button>
+            :
+            <button className='cart__btn' onClick={() => dispatch(addToCart(product))} ><IoCartOutline />
+             </button>
+          }
         </div>
       </div>
     </div>
@@ -74,10 +89,25 @@ import { useNavigate } from 'react-router-dom';
             </Link>
           </div>
           <div className="product__categorys">
+          <button onClick={() => setValue('all')} className='category__btn'>all</button>
             {products__category}
           </div>
           <div className="product__cards">
-            {products}
+            {
+              isLoading ? 
+              <div className='skeleton__wrapper container'>
+              {
+                  Array(4).fill("").map((_, inx)=>  <div key={inx} className="skeleton__card">
+                  <div className="skeleton__image skeleton__anime"></div>
+                  <div className="skeleton__title skeleton__anime"></div>
+                  <div className="skeleton__price skeleton__anime"></div>
+              </div>)
+              }
+              </div>
+               :
+               products
+            }
+
           </div>
           <div  className="product__btn">
             <Link to={'/all-products'}>

@@ -1,23 +1,72 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Cart.scss'
 
 import { Link } from 'react-router-dom'
 import { MdKeyboardArrowRight } from 'react-icons/md'
 
-import img from '../../assets/kat1.png'
 import { BiMinus, BiPlus } from 'react-icons/bi'
 import { IoTrashOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from 'react-redux'
-import { decrementCart, incrementCart, removeFromCart } from '../../context/slices/CartSlice'
+import { decrementCart, deleteAllCart, incrementCart, removeFromCart } from '../../context/slices/CartSlice'
+import Empty from '../../empty/Empty'
+import { useGetInputValue } from '../../hooks/GetInpuValue'
+import { toast } from 'react-toastify'
 
+
+
+const initialState = {
+
+  fname : "" ,
+  text : "" ,
+  tel : "" ,
+  email : "" ,
+  adress : "" ,
+}
+
+
+const BOT_TOKEN = '6741914349:AAGl2R75SFfTugVGZbtsnMfPgWEiMQlzQVU'
+const chatId = '-4200519677'
 
 
 
 const Cart = () => {
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+
+  } , [])
   const cart = useSelector(state => state.cart.value)
-  
   const dispatch = useDispatch()
+  
+
+  
+  const {formData , handleChange , setFormData} = useGetInputValue(initialState)
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    console.log(formData)
+    setFormData(initialState)
+    let texts = 'Buyurtma %0A%0A'
+    texts += `fname : ${formData.fname} %0A%0A `
+    texts += `adress : ${formData.adress} %0A%0A ` 
+    texts += `email : ${formData.email} %0A%0A `
+    texts += `text : ${formData.text} %0A%0A ` 
+    texts += `tel : ${formData.tel} %0A%0A ` 
+    
+  
+  
+    
+    let url  = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${chatId}&text=${texts}`
+    let api = new XMLHttpRequest()
+    api.open('GET' , url , true)
+    api.send()
+    dispatch(deleteAllCart())
+    toast.success('Спасибо за покупку')
+  }  
+
+
+
+
 
   let cartItems = cart?.map((item) => (
     <div key={item.id} className="cart__card">
@@ -44,6 +93,9 @@ const Cart = () => {
 
   return (
     <>
+    {
+      cart.length ? 
+
       <div className="cart">
          <div className="container">
              <div className="cart__title">
@@ -68,43 +120,45 @@ const Cart = () => {
              </div>
              <div className="decor">
                  <h2>Оформление</h2>
-                 <form action="">
+                 <form onSubmit={handleSubmit} action="">
                     <div className="df">
-                      <input type="text" placeholder='ФИО'/>
-                      <input type="text" placeholder='телефон' />
-                      <input type="text" placeholder='Электронная почта' />
+                      <input value={formData.fname} onChange={handleChange} name='fname' required  type="text" placeholder='ФИО'/>
+                      <input value={formData.tel} onChange={handleChange} name='tel' required type="number" placeholder='телефон' />
+                      <input value={formData.email} onChange={handleChange} name='email' required type="email" placeholder='Электронная почта' />
                     </div>
                     <div className="delivery">
                         <h2>Доставка</h2>
-                        <input type="text" placeholder='Адрес доставки' />
-                        <textarea name="" placeholder='Комментарий' id=""></textarea>
-                    </div>
+                        <input value={formData.adress} onChange={handleChange}   name='adress' required type="text" placeholder='Адрес доставки' />
+                        <textarea value={formData.text} onChange={handleChange}  name="text" required  placeholder='Комментарий' id=""></textarea>
+                          </div>
+                  <div className="payment">
+                      <h2>Оплата</h2>
+                      <div className="dfp">
+                      <span>
+                        <p>Товары..........................</p>
+                        <p>12 300₽</p>
+                      </span>
+                      <span>
+                        <p>Доставка................................</p>
+                        <p>12 300₽</p>
+                      </span>
+                      </div>
+                      <h3>12822$</h3>
+                      <div className="dfb">
+                        <button>Купить</button>
+                          <span>
+                          <input required type="checkbox" />
+                          <p>Я согласен наобработку моих персональных данных</p>
+                          </span>
+                      </div>
+             </div>
                  </form>
              </div>
-             <div className="payment">
-                <h2>Оплата</h2>
-                <div className="dfp">
-                <span>
-                   <p>Товары..........................</p>
-                   <p>12 300₽</p>
-                </span>
-                <span>
-                   <p>Доставка................................</p>
-                   <p>12 300₽</p>
-                </span>
-                </div>
-                <h3>12822$</h3>
-                <div className="dfb">
-                  <button>Купить</button>
-                    <span>
-                    <input type="checkbox" />
-                    <p>Я согласен наобработку моих персональных данных</p>
-                    </span>
-                </div>
-             </div>
-
          </div>
       </div>
+      :
+      <Empty text={"корзина"}/>
+    }
     </>
   )
 }

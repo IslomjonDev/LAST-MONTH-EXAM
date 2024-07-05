@@ -5,9 +5,7 @@ import './SingleRout.scss'
 
 /////icons
 import { SiOdnoklassniki } from "react-icons/si";
-import { FaVk , FaWhatsapp  } from "react-icons/fa";
-import { BiLogoTelegram } from "react-icons/bi";
-import { FaPhoneVolume } from "react-icons/fa6";
+import { FaVk , FaWhatsapp  } from "react-icons/fa";import { FaPhoneVolume } from "react-icons/fa6";
 import { BsTelegram } from 'react-icons/bs';
 import { FaPlus , FaMinus } from "react-icons/fa6";
 import { CiHeart } from "react-icons/ci";
@@ -22,16 +20,35 @@ const SingleRout = () => {
 
     const {id} = useParams()
 
-    const [product , seProduct] = useState(null)
-
-    const {data} = useGetProductByIdQuery(id)
-    console.log(data);
-
+    const {data , isLoading} = useGetProductByIdQuery(id)
 
   return (
     <>
       <div className="single">
          <div className="container">
+            {
+                isLoading
+                ? 
+                <div>
+                    <div className="skeleton__wrapper container">
+                    {
+                        Array(1).fill("").map((_, inx)=>  <div key={inx} className="skeleton__card__single">
+                        <div className="skeleton__image__single skeleton__anime"></div>
+                        <span>
+                            <div className="skeleton__title__single skeleton__anime"></div>
+                            <div className="skeleton__title__single skeleton__anime"></div>
+                            <div className="skeleton__title__single skeleton__anime"></div>
+                            <div className="skeleton__price__single skeleton__anime"></div>
+                            <div className="skeleton__desc__single skeleton__anime"></div>
+                            <div className="skeleton__desc__single skeleton__anime"></div>
+                            <div className="skeleton__desc__single skeleton__anime"></div>
+                            <div className="skeleton__btns__single skeleton__anime"></div>
+                        </span>
+                    </div>)
+                    }
+                    </div>
+                </div>
+             :
              <div className="single__content">
                 <div className="single__left">
                      <img src={data?.image} alt="" />
@@ -80,6 +97,7 @@ const SingleRout = () => {
                         </div>
                 </div>
              </div>
+            }
              <div className="skils">
                  <div className="skills__title">
                     <h1>Характеристика</h1>

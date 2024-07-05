@@ -1,0 +1,175 @@
+.admin{
+    display: flex;
+    .sidebar{
+        padding: 30px;
+        background: #454545;
+        width: 110px;
+        position: sticky;
+        height: 100vh;
+        transition: .3s;
+        span{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            svg{
+                font-size: 28px;
+                color: #fff;
+            }
+            h2{
+                display: none;
+                white-space: nowrap;  
+            }
+            
+            button{
+                background-color: transparent;
+                border: none;
+            }
+        }
+        .admin__links{
+            margin-top: 38px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-left: -12px;
+            a{
+                color: #fff;
+                font-family: Manrope;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 8px 12px;
+                border-radius: 8px;
+                h2{
+                    font-family: Manrope;
+                    font-size: 18px;
+                    font-weight: 600;
+                    line-height: 24.59px;
+                    display: none;
+                    white-space: nowrap;  
+                }
+                svg{
+                    font-size: 32px;
+                }
+            }
+            a.active{
+                background-color:#6A6A6A ;
+            }
+        }
+    }
+    .sidebar.show{
+        padding: 30px;
+        background: #454545;
+        width: 400px;
+        position: sticky;
+        height: 100vh;
+        span{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            svg{
+                font-size: 28px;
+                color: #fff;
+            }
+            h2{
+                font-family: Manrope;
+                font-size: 28px;
+                font-weight: 600;
+                line-height: 38.25px;
+                color: #fff;
+                display: flex;
+            }
+        }
+        .admin__links{
+            margin-top: 38px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-left: 0;
+            a{
+                color: #fff;
+                font-family: Manrope;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 8px 12px;
+                border-radius: 8px;
+                h2{
+                    font-family: Manrope;
+                    font-size: 18px;
+                    font-weight: 600;
+                    line-height: 24.59px;
+                    display: flex;
+                }
+                svg{
+                    font-size: 24px;
+                }
+            }
+            a.active{
+                background-color:#6A6A6A ;
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+.create__product{
+    padding: 30px;
+    h2{
+        font-family: Manrope;
+        font-size: 28px;
+        font-weight: 500;
+        line-height: 30.8px;
+        color: #454545;
+    }
+    form{
+        margin-top: 33px;
+        span{
+            display: flex;
+            flex-direction: column;
+            margin-top: 16px;
+            gap: 8px;
+            label{
+                font-family: Manrope;
+                font-size: 18px;
+                font-weight: 500;
+                line-height: 25.6px;
+            }
+            input , select , textarea{ 
+                width: 620px;
+                resize: none;
+                height: 58px;
+                padding: 16px;
+                gap: 10px;
+                border-radius: 10px ;
+                background: #F8F8F8;
+                border: none;
+                outline: none;
+            }
+            textarea{
+                height: 150px;
+            }
+        }
+        button{
+            padding: 13px 64px;
+            margin-top: 23px;
+            background-color: #454545;
+            color: #fff;
+            border-radius: 5px;
+            border: 1px solid #454545;
+            transition: .3s;
+        }
+        button:hover{
+            background-color: #fff;
+            color: #454545;
+            border: 1px solid #454545;
+        }
+        button:active{
+            transform: scale(0.95);
+        }
+    }
+}

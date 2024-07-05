@@ -93,6 +93,26 @@
             .pro__prag{
                 padding: 0 22px;
                 margin-top: 32px;
+                .cart__btn__check{
+                    background-color: #fff !important;
+                    color: #454545 ;
+                    border: 1px solid green !important;
+                    transition: .3s;
+                    svg{
+                        color: green !important;
+                    }
+                }
+                .cart__btn:hover{
+                    background-color: #fff;
+                    color: #454545 ;
+                    transition: .3s;
+                   svg{
+                    color: #454545;
+                   }
+                }
+                .cart__btn:active{
+                    transform: scale(0.95);
+                }
                 h3{
                     font-family: Manrope;
                     font-size: 20px;
@@ -159,6 +179,13 @@
     
 }
 @media (max-width:700px) {
+    .detail{
+        max-width: 300px;
+        img{
+            max-width: 300px !important;
+            height: 300px !important;
+        }
+    }
     .products__title{
         button{
             display: none !important;
@@ -231,13 +258,78 @@
 }
 
 
+
+
+
 .detail{
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     img{
-        max-width: 400px;
-        height: 400px;
+        max-width: 500px;
+        height: 500px;
+        margin-top: 30px;
         object-fit: contain;
     }
+    button{
+        padding: 10px 24px;
+        background-color: #454545;
+        color: #fff;
+        border: 1px solid #454545;
+        border-radius: 100px;
+        transition: .3s;
+        margin-top: 40px;
+    }
+    button:hover{
+        background-color: #fff;
+        color: #454545;
+        border: 1px solid #454545;
+    }
+    button:active{
+        transform: scale(0.95);
+    }
 }
+
+
+.skeleton__card{
+    display: flex;
+    flex-direction: column;
+}
+
+.skeleton__wrapper {
+    display: flex;
+    gap: 40px;
+  }
+  
+  .skeleton__image {
+    width: 300px;
+    height: 250px;
+    background: #ddd;
+    border-radius: 10px;
+  }
+  
+  .skeleton__title,
+  .skeleton__price {
+    width: 90%;
+    height: 30px;
+    background: #ddd;
+    margin-top: 10px;
+    border-radius: 10px;
+  }
+  
+  .skeleton__price {
+    width: 70%;
+  }
+  
+  .skeleton__anime {
+    background: linear-gradient(90deg, #f7f7f7, #ddd, #f7f7f7);
+    background-size: 200%;
+    animation: skeletonAnime 1s linear 0s infinite;
+  }
+  
+  @keyframes skeletonAnime {
+    to {
+      background-position: 200%;
+    }
+  }

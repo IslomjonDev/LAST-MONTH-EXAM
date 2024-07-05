@@ -4,9 +4,9 @@ const Modul = ({children , close}) => {
   return (
     <>
       <div onClick={()=> close(false)} className="overlay"></div>
-      <div className="modul">
-         {children}
-      </div>
+        <div className="modul">
+          {children}
+        </div>
     </>
   )
 }

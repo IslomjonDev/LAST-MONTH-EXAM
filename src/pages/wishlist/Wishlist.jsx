@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import Products from '../../components/products/Products'
+import Empty from '../../empty/Empty'
 
 const AddWishlist = () => {
   const heart = useSelector(state => state.wishlist.value)
@@ -10,9 +11,19 @@ const AddWishlist = () => {
 
   } , [])
   return (
-    <div style={{padding:"100px 0"}}>
-           <Products data={heart} />  
-    </div>
+
+    <>
+    {
+      heart.length ? 
+
+      <div style={{padding:"100px 0"}}>
+            <Products data={heart} />  
+      </div>
+      :
+      <Empty text={"избранное"}/>
+    }
+    </>
+
   )
 }
 

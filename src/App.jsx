@@ -15,6 +15,12 @@ import BlogPage from './pages/blogpage/BlogPage'
 import KatalogPage from './pages/katalogPage/KatalogPage'
 import NotFound from './pages/not-found/NotFound'
 import Cart from './pages/cart/Cart'
+import Admin from './pages/admin/Admin'
+import Login from './pages/login/Login'
+import CreateProduct from './pages/admin/CreateProduct'
+import ManageProduct from './pages/admin/ManageProduct'
+import CreateCategory from './pages/admin/CreateCategory'
+import ManageCategory from './pages/admin/ManageCategory'
 function App() {
 
   return (
@@ -33,8 +39,14 @@ function App() {
          <Route path='/blog' element={<BlogPage/>}/>
          <Route path='/catalog' element={<KatalogPage/>}/>
          <Route path='/cart' element={<Cart/>}/>
+         <Route path='/admin' element={<Admin/>}>
+            <Route path='create-product' element={<CreateProduct/>}></Route>
+            <Route path='manage-product' element={<ManageProduct/>}></Route>
+            <Route path='create-category' element={<CreateCategory/>}></Route>
+            <Route path='manage-category' element={<ManageCategory/>}></Route>
+         </Route>
+         <Route path='/login' element={<Login/>}/>
          <Route path='*' element={<NotFound/>}/>
-
       </Routes>
       <Footer/>
     </>

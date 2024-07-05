@@ -237,3 +237,67 @@
         }
     }
 }
+
+
+
+
+.skeleton__wrapper {
+    display: flex;
+    gap: 40px;
+  }
+  
+  .skeleton__card__single{
+    display: flex !important;
+  }
+
+  .skeleton__image__single{
+    width: 550px;
+    height: 600px;
+    background: #ddd;
+    border-radius: 10px;
+  }
+  
+  .skeleton__title__single,
+  .skeleton__price__single {
+    width: 500px;
+    height: 35px;
+    margin-left: 50px;
+    
+    background: #ddd;
+    margin-top: 20px;
+    border-radius: 10px;
+  }
+  
+  .skeleton__price__single {
+    width: 40%;
+    margin-top: 100px;
+    margin-bottom: 80px;
+  }
+  .skeleton__desc__single {
+    width: 500px;
+    height: 25px;
+    margin-left: 50px;
+    background: #ddd;
+    margin-top: 20px;
+    border-radius: 10px;
+  }
+  .skeleton__btns__single{
+    width: 300px;
+    height: 70px;
+    margin-left: 50px;
+    background: #ddd;
+    margin-top: 30px;
+    border-radius: 10px;
+  }
+
+  .skeleton__anime {
+    background: linear-gradient(90deg, #f7f7f7, #ddd, #f7f7f7);
+    background-size: 200%;
+    animation: skeletonAnime 1s linear 0s infinite;
+  }
+  
+  @keyframes skeletonAnime {
+    to {
+      background-position: 200%;
+    }
+  }

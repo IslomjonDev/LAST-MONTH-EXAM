@@ -1,45 +1,60 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Header.scss'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import logo from '../../assets/logo.png'
 import { RxHamburgerMenu } from "react-icons/rx";
 import { CiSearch , CiHeart , CiShoppingCart} from "react-icons/ci";
 import { TbAntennaBars5 } from "react-icons/tb";
+import { useGetProductsQuery } from '../../context/api/productApi';
+import Navtop from '../navtop/Navtop';
 
 
 const Header = () => {
 
+  let {pathname} = useLocation()
+
+  if(pathname.includes('login') || pathname.includes('admin')){
+      return <></>
+  }
+
+  useEffect(() => {} , [])
+
   let [burger, setBurger] = useState(false)
+
+  const [searchValue , setSearchValue] = useState("")
+  const [filterData, setFilterData] = useState(null)
+
+
+  const {data} = useGetProductsQuery()
+
+  useEffect(() => {
+      if(data){
+          setFilterData(data?.filter(product => product.title.toLowerCase().includes(searchValue.toLowerCase())))
+      }
+  } , [searchValue])
+
+
+
+  const handleClear = () => {
+    setSearchValue("")
+  }
+
+
+  const searchItems = filterData?.map(product => (
+    <Link onClick={() => handleClear()} key={product.id} to={`/products/${product.id}`}>
+      <img src={product.image} alt="" />
+      <p>{product.title}</p>
+    </Link>
+  ))
+  
+
 
   return (
     <>
+  <Navtop burger={burger} setBurger={setBurger}/>
     <header>
       <div className="container">     
           <div className="navbar">
-              <div className="nav__top">
-                  <div className="top__list">
-                    <ul className={burger ? "show" : ""} >
-                      <div className='links'>
-                        <NavLink onClick={() => setBurger(p => !p) }   to="/about">О компании</NavLink>
-                        <NavLink onClick={() => setBurger(p => !p) }  to="/shipping-payment">Доставка и оплата</NavLink>
-                        <NavLink onClick={() => setBurger(p => !p) }  to="/return">Возврат</NavLink>
-                        <NavLink onClick={() => setBurger(p => !p) }  to="/garant">Гарантии</NavLink>
-                        <NavLink onClick={() => setBurger(p => !p) }  to="/contact">Контакты</NavLink>
-                        <NavLink onClick={() => setBurger(p => !p) }  to="/blog">Блог</NavLink>
-                      </div>
-                      <Link onClick={() => setBurger(p => !p) }  to={'/catalog'}>
-                        <div  className="media-btn">
-                          <button><RxHamburgerMenu />
-                          Каталог</button>
-                        </div>
-                      </Link>
-                      <div className="top__tel">
-                          <p>8 (800) 890-46-56</p>
-                          <NavLink onClick={() => setBurger(p => !p) } >Заказать звонок</NavLink>
-                      </div>
-                    </ul>
-                  </div>
-              </div>
               <div className="nav__bottom">
                 <div className="nav__logo">
                   <div>
@@ -57,10 +72,22 @@ const Header = () => {
                     <button><RxHamburgerMenu />
                     Каталог</button>
                   </Link>
-                   <div className="inp">
-                      <input type="text" placeholder="Поиск по товарам" />
-                      <CiSearch />
-                   </div>
+                  <div className="inp__content">
+                    <div className="inp">
+                        <input value={searchValue} onChange={(e) => setSearchValue(e.target.value)} type="text" placeholder="Поиск по товарам" />
+                        <CiSearch />
+                    </div>
+                        {
+                          searchValue.trim() ?
+                         <div className="inp__modul">
+                          {
+                            searchItems
+                          }
+                         </div>
+                          :
+                          <></>
+                        }
+                  </div>
                 </div>
                 <div className="nav__icons">
                    <span>
@@ -83,9 +110,23 @@ const Header = () => {
                    </span>
                 </div>
               </div>
-              <div className="media__inp">
-                 <input type="text" placeholder='Поиск по товарам' />
-                 <CiSearch />
+                <div className="media__inp">
+                <div className="inp__content">
+                  <span>
+                    <input value={searchValue} onChange={(e) => setSearchValue(e.target.value)} type="text" placeholder='Поиск по товарам' />
+                    <CiSearch />
+                  </span>
+                  {
+                        searchValue.trim() ?
+                      <div className="inp__modul">
+                        {
+                          searchItems
+                        }
+                      </div>
+                        :
+                      <></>
+                      }
+                  </div>
               </div>
           </div>
       </div>
