@@ -6,6 +6,7 @@ import Empty from '../../empty/Empty'
 
 const AddWishlist = () => {
   const heart = useSelector(state => state.wishlist.value)
+  
   useEffect(() => {
     window.scrollTo(0, 0)
 
