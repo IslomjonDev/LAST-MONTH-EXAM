@@ -6,6 +6,8 @@ import google from '../../assets/google.png'
 import facebook from '../../assets/facebook.webp'
 import { useGetInputValue } from '../../hooks/GetInpuValue'
 import { useDispatch } from 'react-redux'
+import { setToken } from '../../context/slices/AuthSlice'
+import { toast } from 'react-toastify'
 
 
 let initialState = {
@@ -13,11 +15,11 @@ let initialState = {
   password: ''
 }
 
-// const dispatch = useDispatch()
 
 
 const Login = () => {
-
+  
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const {formData , handleChange } = useGetInputValue(initialState)
 
@@ -25,7 +27,11 @@ const Login = () => {
   const handleSubmit = e => {
     e.preventDefault()
     if(formData.username === "john32" && formData.password === "87654321"){
+      dispatch(setToken("fake-token"))
       navigate('/admin')
+      toast.success("добро пожаловать")
+    }else{
+      toast.error("Имя пользователя или пароль неверны")
     }
 
   }

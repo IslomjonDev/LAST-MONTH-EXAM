@@ -5,6 +5,8 @@
         background: #454545;
         width: 110px;
         position: sticky;
+        top: 0;
+        left: 0;
         height: 100vh;
         transition: .3s;
         span{
@@ -118,7 +120,7 @@
 
 
 .create__product{
-    padding: 30px;
+    padding: 0px 20px;
     h2{
         font-family: Manrope;
         font-size: 28px;
@@ -171,5 +173,21 @@
         button:active{
             transform: scale(0.95);
         }
+    }
+}
+
+
+
+
+
+
+.manage__product{
+    padding: 20px 0;
+    h2{
+        font-family: Manrope;
+        font-size: 28px;
+        font-weight: 500;
+        line-height: 30.8px;
+        color: #454545;
     }
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './Admin.scss'
 import { FaArrowLeftLong } from "react-icons/fa6"
-import { Link, NavLink, Outlet } from 'react-router-dom'
+import { NavLink, Outlet } from 'react-router-dom'
 import { MdOutlineDashboardCustomize } from "react-icons/md"
 import { RiEdit2Line } from "react-icons/ri"
 import { RxHamburgerMenu } from "react-icons/rx";

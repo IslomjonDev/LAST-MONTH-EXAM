@@ -3,6 +3,22 @@
         display: flex ;
         opacity: 0;
     }
+    .edit__btn{
+        display: flex;
+        gap: 7px;
+        button:hover{
+            transition: .3s;
+            background-color: #fff !important;
+            color: #454545 !important;
+            border: 1px solid #454545 !important;
+            svg{
+                color: #454545 !important;
+            }
+        }
+        button:active{
+            transform: scale(0.95);
+        }
+    }
     .product__categorys{
         display: flex;
         gap: 50px;
@@ -155,11 +171,12 @@
                     }
                 }
             }
+            .update__btn{
+                display: flex;
+                gap: 20px;
+            }
         }
-        .products__item:hover{
-            transform: scale(1.02);
-            transition: .3s;
-        }
+        
     }
 
 }
@@ -203,7 +220,7 @@
             font-size: 16px !important;
             display: -webkit-box;
             -webkit-box-orient: vertical;
-            -webkit-line-clamp: 1; /* Faqat bitta qatorda ko'rsatish */
+            -webkit-line-clamp: 1;
             overflow: hidden;
             text-overflow: ellipsis;
 

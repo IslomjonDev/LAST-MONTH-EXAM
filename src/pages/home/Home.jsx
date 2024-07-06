@@ -13,13 +13,14 @@ const Home = () => {
 
   const { data , isLoading} = useGetProductsQuery()
 
+  console.log(data);
 
   return (
     <>
       <Banner/>
       <Katalog/>
       <NORNLIGHT/>
-      <Products isLoading={isLoading} data={data}/>
+      <Products isAdmin={false} isLoading={isLoading} data={data}/>
       <Brends/>
       <Blog/>
       <Text/>

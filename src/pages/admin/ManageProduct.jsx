@@ -1,15 +1,20 @@
 import React from 'react'
 import Products from '../../components/products/Products'
-import { useGetProductsQuery, useUpdateProductMutation } from '../../context/api/productApi'
+import { useGetProductsQuery } from '../../context/api/productApi'
 
 const ManageProduct = () => {
 
  let {data}  = useGetProductsQuery()
+ console.log(data);
 
   return (
     <>
+    <div className="container">
       <h2>Manage Product</h2>
-      <Products data={data}/>
+      <div>
+        <Products  sliceCount={Infinity} isAdmin={true} data={data}/>
+      </div>
+    </div>
     </>
   )
 }

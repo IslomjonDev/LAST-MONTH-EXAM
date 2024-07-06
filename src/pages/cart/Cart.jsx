@@ -76,7 +76,7 @@ const Cart = () => {
         <div className="dffc">
             <span>
               <p>{item.title}</p>
-              <h3>{item.price}</h3>
+              <h3>{item.price * item.quantity}$</h3>
             </span>
         <h4>{item.desc}</h4>
         <h4>RAD-COMBO-50/XXX/230/XXX/XXX/S4/XS</h4>
@@ -143,7 +143,7 @@ const Cart = () => {
                         <p>12 300₽</p>
                       </span>
                       </div>
-                      <h3>12822$</h3>
+                      <h3>$5121</h3>
                       <div className="dfb">
                         <button>Купить</button>
                           <span>

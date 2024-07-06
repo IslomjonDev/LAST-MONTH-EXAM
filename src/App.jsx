@@ -21,6 +21,7 @@ import CreateProduct from './pages/admin/CreateProduct'
 import ManageProduct from './pages/admin/ManageProduct'
 import CreateCategory from './pages/admin/CreateCategory'
 import ManageCategory from './pages/admin/ManageCategory'
+import Auth from './auth/Auth'
 function App() {
 
   return (
@@ -39,11 +40,13 @@ function App() {
          <Route path='/blog' element={<BlogPage/>}/>
          <Route path='/catalog' element={<KatalogPage/>}/>
          <Route path='/cart' element={<Cart/>}/>
+         <Route path='/' element={<Auth/>}>
          <Route path='/admin' element={<Admin/>}>
             <Route path='create-product' element={<CreateProduct/>}></Route>
             <Route path='manage-product' element={<ManageProduct/>}></Route>
             <Route path='create-category' element={<CreateCategory/>}></Route>
             <Route path='manage-category' element={<ManageCategory/>}></Route>
+         </Route>
          </Route>
          <Route path='/login' element={<Login/>}/>
          <Route path='*' element={<NotFound/>}/>

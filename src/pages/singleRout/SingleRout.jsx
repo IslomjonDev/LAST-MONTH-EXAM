@@ -9,9 +9,14 @@ import { FaVk , FaWhatsapp  } from "react-icons/fa";import { FaPhoneVolume } fro
 import { BsTelegram } from 'react-icons/bs';
 import { FaPlus , FaMinus } from "react-icons/fa6";
 import { CiHeart } from "react-icons/ci";
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart } from '../../context/slices/CartSlice';
 
 
 const SingleRout = () => {
+
+    const cart = useSelector(v => v.cart.value);
+
 
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -19,8 +24,9 @@ const SingleRout = () => {
     } , [])
 
     const {id} = useParams()
-
     const {data , isLoading} = useGetProductByIdQuery(id)
+
+    const dispatch = useDispatch()
 
   return (
     <>
@@ -80,19 +86,31 @@ const SingleRout = () => {
                         </div>
                     </div>
                         <div className="price">
-                            <h1>{data?.price}</h1>
-                            <p>{data?.oldPrice}</p>
+                            <h1>{data?.price}$</h1>
+                            <p>{data?.oldPrice}$</p>
                         </div>
                         <div className="desc">
                             <p>{data?.desc}</p>
                             <div className="btns">
+                              {
+                                cart.some(cart => cart.id === data.id) ? 
+
                                 <div className="count">
                                     <FaMinus/>
                                     <p>1</p>
                                     <FaPlus/>
                                 </div>
-                                <button className='cart__btn'>В корзину</button>
-                                <button className='heart'><CiHeart /></button>
+                                :
+                                <></>
+                                }
+                                {
+                                cart.some(cart => cart.id === data.id) ? 
+                                    <></> :
+                                    <button  onClick={() => dispatch(addToCart(data))}className='cart__btn'>В корзину</button>
+
+                                }
+                      
+                                <button  className='heart'><CiHeart /></button>
                             </div>
                         </div>
                 </div>
