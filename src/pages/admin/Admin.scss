@@ -1,5 +1,16 @@
 .admin{
     display: flex;
+    .admin__btn{
+        position: absolute;
+        bottom: 20px;
+        left: 7px;
+        button{
+            padding: 10px 20px;
+            background-color: transparent;
+            color: #fff;
+            border: 1px solid #fff;
+        }
+    }
     .sidebar{
         padding: 30px;
         background: #454545;

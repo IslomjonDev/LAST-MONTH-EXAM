@@ -1,14 +1,20 @@
 import React, { useState } from 'react'
 import './Admin.scss'
 import { FaArrowLeftLong } from "react-icons/fa6"
-import { NavLink, Outlet } from 'react-router-dom'
+import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import { MdOutlineDashboardCustomize } from "react-icons/md"
 import { RiEdit2Line } from "react-icons/ri"
 import { RxHamburgerMenu } from "react-icons/rx";
 
 const Admin = () => {
 
+  const navigate = useNavigate()
   let [burger, setBurger] = useState(false)
+
+  const handleLogOut = () => {
+    localStorage.removeItem('x-auth-token')
+    navigate('/login')
+  }
 
   return (
     <div className="admin">
@@ -38,6 +44,9 @@ const Admin = () => {
             <RiEdit2Line />
             <h2>Manage category</h2>
           </NavLink>
+        </div>
+        <div className="admin__btn">
+            <button onClick={handleLogOut}>Logout</button>
         </div>
       </div>
       <Outlet   /> 
