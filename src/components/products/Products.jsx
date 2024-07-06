@@ -24,6 +24,7 @@ const Products = ({  isAdmin, isLoading, data, sliceCount = 8 }) => {
   const [model, setModel] = useState(null); 
   const [value, setValue] = useState("all");
   const [editModul , setEditModul] = useState(null)
+  const [more , setMore] = useState(1)
 
   console.log(editModul);
 
@@ -68,7 +69,7 @@ const Products = ({  isAdmin, isLoading, data, sliceCount = 8 }) => {
 
   const categoryFilter = value === "all" ? data : data.filter(el => el?.category === value);
 
-  let products = categoryFilter?.slice(0, sliceCount).map(product => (
+  let products = categoryFilter?.slice(0, sliceCount * more).map(product => (
     <div className="products__item" key={product.id}>
       <div className="imgp">
         <div className='imgp2' onClick={() => setModel(product)}>
@@ -185,6 +186,7 @@ const Products = ({  isAdmin, isLoading, data, sliceCount = 8 }) => {
             </div>
           ) : products }
         </div>
+        <button className='loadmore' onClick={() => setMore( p => p + 1)}>более</button>
         <div className="product__btn">
           <Link to={'/all-products'}>
             <button>Все товары <FaArrowRightLong /></button>

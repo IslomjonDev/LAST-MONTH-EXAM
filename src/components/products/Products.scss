@@ -1,4 +1,21 @@
 .products{
+    .loadmore{
+        display: flex;
+        margin: 50px auto 0;
+        padding: 14px 64px;
+        background-color: #454545;
+        color: #fff;
+        border-radius: 100px;
+        transition: .3s;
+    }
+    .loadmore:hover{
+        background-color: #fff;
+        color: #454545;
+        border: 1px solid #454545;
+    }
+    .loadmore:active{
+        transform: scale(0.95);
+    }
     .product__btn{
         display: flex ;
         opacity: 0;
