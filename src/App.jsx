@@ -47,6 +47,7 @@ function App() {
             <Route path='create-category' element={<CreateCategory/>}></Route>
             <Route path='manage-category' element={<ManageCategory/>}></Route>
          </Route>
+         <Route path='/' element={<Auth/>}/>
          </Route>
          <Route path='/login' element={<Login/>}/>
          <Route path='*' element={<NotFound/>}/>

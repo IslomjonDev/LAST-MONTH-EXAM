@@ -25,7 +25,7 @@ const initialState = {
 
 
 const BOT_TOKEN = '6741914349:AAGl2R75SFfTugVGZbtsnMfPgWEiMQlzQVU'
-const chatId = '-4200519677'
+const chatId = '-1002213319334'
 
 
 
