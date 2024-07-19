@@ -22,6 +22,15 @@ import ManageProduct from './pages/admin/ManageProduct'
 import CreateCategory from './pages/admin/CreateCategory'
 import ManageCategory from './pages/admin/ManageCategory'
 import Auth from './auth/Auth'
+import Register from './pages/register/Register'
+import Account from './pages/account/Account'
+import Orders from './pages/account/orders/Orders'
+import Danne from './pages/account/Danne'
+import Zakas from './pages/account/orders/AllOrders'
+import AllOrders from './pages/account/orders/AllOrders'
+import Unpaid from './pages/account/orders/Unpaid'
+import Active from './pages/account/orders/Active'
+
 function App() {
 
   return (
@@ -51,6 +60,15 @@ function App() {
          </Route>
          <Route path='/login' element={<Login/>}/>
          <Route path='*' element={<NotFound/>}/>
+         <Route path='/register' element={<Register/>}/>
+         <Route path='/account' element={<Account/>}>
+            <Route path='orders' element={<Orders/>}>
+                <Route path='all-orders' element={<AllOrders/>} ></Route>
+                <Route path='unpaid' element={<Unpaid/>} ></Route>
+                <Route path='active' element={<Active/>} ></Route>
+            </Route>
+            <Route path='danne' element={<Danne/>}></Route>
+         </Route>
       </Routes>
       <Footer/>
     </>

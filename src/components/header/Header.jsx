@@ -3,9 +3,10 @@ import './Header.scss'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import logo from '../../assets/logo.png'
 import { RxHamburgerMenu } from "react-icons/rx";
-import { CiSearch , CiHeart , CiShoppingCart} from "react-icons/ci";
+import { CiSearch , CiHeart , CiShoppingCart ,CiUser} from "react-icons/ci";
 import { TbAntennaBars5 } from "react-icons/tb";
 import { useGetProductsQuery } from '../../context/api/productApi';
+
 import Navtop from '../navtop/Navtop';
 
 
@@ -13,7 +14,7 @@ const Header = () => {
 
   let {pathname} = useLocation()
 
-  if(pathname.includes('login') || pathname.includes('admin')){
+  if(pathname.includes('login') || pathname.includes('admin') || pathname.includes('register')){
       return <></>
   }
 
@@ -97,9 +98,9 @@ const Header = () => {
                         </NavLink>
                    </span>
                    <span>
-                      <NavLink to={'/'}>
-                        <TbAntennaBars5 />
-                        <p>Сравнение</p>
+                      <NavLink to={'/register'}>
+                        <CiUser />
+                        <p>войти</p>
                       </NavLink>
                    </span>
                    <span>

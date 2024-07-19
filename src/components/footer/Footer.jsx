@@ -10,7 +10,7 @@ const Footer = () => {
 
   let {pathname} = useLocation()
 
-  if(pathname.includes('login') || pathname.includes('admin')){
+  if(pathname.includes('login') || pathname.includes('admin') || pathname.includes('register')){
       return <></>
   }
   return (

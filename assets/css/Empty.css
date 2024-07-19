@@ -1,0 +1,26 @@
+.empty button {
+  padding: 14px;
+  width: 250px;
+  border-radius: 100px;
+  background: #454545;
+  border: 1px solid #454545;
+  color: #ffffff;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  margin: 10px 0 50px 0;
+}
+.empty button:hover {
+  background-color: transparent;
+  color: #454545;
+  border: 1px solid #454545;
+}
+.empty button:active {
+  -webkit-transform: scale(0.95);
+          transform: scale(0.95);
+}
+
+@media (max-width: 768px) {
+  .empty img {
+    width: 100%;
+  }
+}
